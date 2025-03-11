@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Video Screens</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        .controls { margin: 20px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; margin: 5px; }
+        .video-grid { display: flex; flex-wrap: wrap; justify-content: center; }
+        .video-container { width: 10%; padding: 5px; }
+        video { width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button onclick="playAll()">Play All</button>
+        <button onclick="pauseAll()">Pause All</button>
+    </div>
+
+    <div class="video-grid" id="videoGrid"></div>
+
+    <script>
+        const videoURL = "https://www.w3schools.com/html/mov_bbb.mp4"; // Replace with your video link
+
+        // Create 100 video players
+        for (let i = 0; i < 100; i++) {
+            const div = document.createElement("div");
+            div.className = "video-container";
+            div.innerHTML = `<video src="${videoURL}" controls muted loop></video>`;
+            document.getElementById("videoGrid").appendChild(div);
+        }
+
+        // Function to play all videos
+        function playAll() {
+            document.querySelectorAll("video").forEach(video => video.play());
+        }
+
+        // Function to pause all videos
+        function pauseAll() {
+            document.querySelectorAll("video").forEach(video => video.pause());
+        }
+    </script>
+
+</body>
+</html>

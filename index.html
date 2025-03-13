@@ -78,9 +78,9 @@
                 videoId = url.split("youtu.be/")[1].split("?")[0];
                 return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
             } 
-            // Instagram Embed
+            // Instagram Embed (Proper Method)
             else if (url.includes("instagram.com/reel/") || url.includes("instagram.com/p/")) {
-                return `https://www.instagram.com/embed/${url.split('/')[4]}/`;
+                return `https://www.instagram.com/p/${url.split('/')[4]}/embed/`;
             }
             // Facebook Embed
             else if (url.includes("facebook.com/")) {

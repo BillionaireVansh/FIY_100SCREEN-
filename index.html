@@ -36,19 +36,44 @@
 
     <h2>Enter Video URL (YouTube, Facebook, Instagram)</h2>
     <input type="text" id="videoURL" placeholder="Paste video link here">
-    <button onclick="openVideo()">Open 100 Tabs</button>
+    <button onclick="setVideo()">Set Video</button>
+    <button onclick="playAll()">Play All</button>
 
     <script>
-        function openVideo() {
+        let videoLink = "";
+
+        function setVideo() {
             let url = document.getElementById("videoURL").value;
             if (!url) {
                 alert("Please enter a valid video URL!");
                 return;
             }
+            videoLink = convertToEmbed(url);
+            alert("Video is set! Click 'Play All' to open 100 tabs.");
+        }
 
-            // Open 100 tabs with the same URL
+        function convertToEmbed(url) {
+            if (url.includes("youtube.com/watch?v=")) {
+                return url.replace("watch?v=", "embed/");
+            } else if (url.includes("youtu.be/")) {
+                return url.replace("youtu.be/", "youtube.com/embed/");
+            } else if (url.includes("facebook.com")) {
+                return url.replace("facebook.com", "facebook.com/plugins/video.php?href=");
+            } else if (url.includes("instagram.com/reel/")) {
+                return url.replace("instagram.com/reel/", "instagram.com/p/") + "embed/";
+            } else {
+                return url;
+            }
+        }
+
+        function playAll() {
+            if (!videoLink) {
+                alert("Please set a video first!");
+                return;
+            }
+
             for (let i = 0; i < 100; i++) {
-                window.open(url, '_blank');
+                window.open(videoLink, "_blank");
             }
         }
     </script>
